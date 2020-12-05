@@ -14,4 +14,8 @@ export class RestaurantsService {
   restaurants(): Observable<Restaurant[]> {
     return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`);
   }
+
+  restaurant(restaurantId: string): Observable<Restaurant> {
+    return this.http.get<Restaurant>(`${MEAT_API}/restaurants/${restaurantId}`);
+  }
 }
