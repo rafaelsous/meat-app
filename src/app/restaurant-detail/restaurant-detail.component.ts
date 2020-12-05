@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ErrorHandler } from 'app/app.error-handler';
-import { Restaurant } from 'app/restaurants/restaurant/resturant.model';
+import { IRestaurant } from 'app/restaurants/restaurant/resturant.model';
 import { RestaurantsService } from 'app/restaurants/restaurants.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { RestaurantsService } from 'app/restaurants/restaurants.service';
 })
 export class RestaurantDetailComponent implements OnInit {
 
-  restaurant: Restaurant;
+  restaurant: IRestaurant;
 
   constructor(
     private restaurantsService: RestaurantsService,
@@ -20,7 +20,7 @@ export class RestaurantDetailComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantsService.restaurant(this.route.snapshot.params['id'])
-      .subscribe((restaurant: Restaurant) => this.restaurant = restaurant
+      .subscribe((restaurant: IRestaurant) => this.restaurant = restaurant
       , error => ErrorHandler.errorHandler(error));
   }
 

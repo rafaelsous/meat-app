@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Restaurant } from './restaurant/resturant.model';
+import { IRestaurant } from './restaurant/resturant.model';
 import { RestaurantsService } from './restaurants.service';
 import { ErrorHandler } from '../../app/app.error-handler';
 
@@ -10,7 +10,7 @@ import { ErrorHandler } from '../../app/app.error-handler';
 })
 export class RestaurantsComponent implements OnInit {
 
-  restaurants: Restaurant[];
+  restaurants: IRestaurant[];
 
   constructor(
     private restaurantsService: RestaurantsService,
@@ -18,7 +18,7 @@ export class RestaurantsComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantsService.restaurants()
-      .subscribe((restaurants: Restaurant[]) => this.restaurants = restaurants
+      .subscribe((restaurants: IRestaurant[]) => this.restaurants = restaurants
       , error => ErrorHandler.errorHandler(error));
   }
 
