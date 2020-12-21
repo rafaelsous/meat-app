@@ -22,7 +22,11 @@
           <p class="lead">Endereço de Entrega:</p>
         </div>
         <div class="col-sm-6 col-xs-12">
-          <div class="form-group">
+          <div
+            class="form-group"
+            [class.has-success]="inputAddress.valid && (inputAddress.dirty || inputAddress.touched)"
+            [class.has-error]="!inputAddress.valid && (inputAddress.dirty || inputAddress.touched)"
+          >
             <label
               class="control-label sr-only"
               for="inputSuccess"
@@ -37,13 +41,26 @@
               placeholder="Endereço"
               name="address"
               ngModel
+              required
+              minlength="5"
+              autcomplete="off"
+              #inputAddress="ngModel"
             />
-            <span class="help-block"></span>
+            <span class="help-block" *ngIf="inputAddress.valid && (inputAddress.dirty || inputAddress.touched)">
+              <i class="fa fa-check"></i> Ok
+            </span>
+            <span class="help-block" *ngIf="!inputAddress.valid && (inputAddress.dirty || inputAddress.touched)">
+              <i class="fa fa-remove"></i> Campo obrigatório
+            </span>
           </div>
         </div>
 
         <div class="col-sm-2 col-xs-6">
-          <div class="form-group has-success">
+          <div
+            class="form-group"
+            [class.has-success]="inputNumber.valid && (inputNumber.dirty || inputNumber.touched)"
+            [class.has-error]="!inputNumber.valid && (inputNumber.dirty || inputNumber.touched)"
+          >
             <label
               class="control-label sr-only"
               for="inputSuccess"
@@ -58,12 +75,20 @@
               placeholder="Número"
               name="number"
               ngModel
+              required
+              autocomplete="off"
+              #inputNumber="ngModel"
             />
-            <span class="help-block"><i class="fa fa-check"></i> Ok</span>
+            <span class="help-block" *ngIf="inputNumber.valid && (inputNumber.dirty || inputNumber.touched)">
+              <i class="fa fa-check"></i> Ok
+            </span>
+            <span class="help-block" *ngIf="!inputNumber.valid && (inputNumber.dirty || inputNumber.touched)">
+              <i class="fa fa-remove"></i> Campo obrigatório
+            </span>
           </div>
         </div>
         <div class="col-sm-4 col-xs-6">
-          <div class="form-group has-error">
+          <div class="form-group">
             <label
               class="control-label sr-only"
               for="inputSuccess"
@@ -79,7 +104,6 @@
               name="complement"
               ngModel
             />
-            <span class="help-block"><i class="fa fa-remove"></i> Help block with error</span>
           </div>
 
         </div>
@@ -199,8 +223,13 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <a href="order-summary.html" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
-        </a>
+        <button
+          href="order-summary.html"
+          class="btn btn-success pull-right"
+          [disabled]="!form.valid"
+        >
+          <i class="fa fa-credit-card"></i> Concluir Pedido
+        </button>
       </div>
     </div>
 
